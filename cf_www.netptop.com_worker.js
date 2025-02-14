@@ -138,31 +138,6 @@ const someHTML = `
             color: #dddddd;
         }
     </style>
-    <!-- Prioritized Banner Override Script -->
-    <script>
-        (function() {
-            "use strict";
-
-            // Define a selector based on a unique part of the banner's inline style and content.
-            // Adjust the selector as needed if the banner's attributes change.
-            const bannerSelector = 'div[style*="position: fixed"][style*="z-index: 10000"][style*="background-color: rgb(255, 0, 0)"]';
-            
-            // Function that checks for and removes the banner.
-            function removeBanner() {
-                const banner = document.querySelector(bannerSelector);
-                if (banner) {
-                    banner.remove();
-                }
-            }
-            
-            // Try to remove the banner as soon as the script runs.
-            removeBanner();
-            
-            // Set up a MutationObserver to continuously remove the banner.
-            const observer = new MutationObserver(removeBanner);
-            observer.observe(document.documentElement, { childList: true, subtree: true });
-        })();
-    </script>
 </head>
 
 <body>
@@ -281,19 +256,6 @@ const someHTML = `
             }
             window.open(inputText, '_blank');
         }
-    </script>
-    <script>
-        const observer = new MutationObserver((mutationsList) => {
-            for (const mutation of mutationsList) {
-                mutation.addedNodes.forEach((node) => {
-                    if (node.nodeType === 1 && node.matches && node.matches('div[style*="position: fixed"][style*="z-index: 10000"]')) {
-                        node.remove();
-                    }
-                });
-            }
-        });
-
-        observer.observe(document.body, { childList: true, subtree: true });
     </script>
 </body>
 </html>
